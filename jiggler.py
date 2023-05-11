@@ -48,7 +48,8 @@ def key_press(seconds):
 
         keyboard.press(Key.shift)
         keyboard.release(Key.shift)
-        print("{}\t[keypress]\tPressed {} key".format(time.ctime(), Key.shift))
+        
+        print(f"{time.ctime()}\t[keypress]\tPressed {Key.shift} key")
 
 
 def switch_screen(seconds, tabs, key):
@@ -73,11 +74,8 @@ def switch_screen(seconds, tabs, key):
             for _ in range(t):
                 keyboard.press(Key.tab)
                 keyboard.release(Key.tab)
-            print(
-                "{}\t[switch_screen]\tSwitched tab".format(
-                    time.ctime(), t, Key.alt, Key.tab
-                )
-            )
+                
+            print(f"{time.ctime()}\t[switch_screen]\tSwitched {Key.tab} tab")
 
 
 def move_mouse(seconds, pixels):
@@ -99,7 +97,7 @@ def move_mouse(seconds, pixels):
         mouse.move(coords[c][0], coords[c][1])
         c = 0 if c+1 == len(coords) else c + 1
         
-        print("{}\t[move_mouse]\tMoved mouse to".format(time.ctime(), mouse.position))
+        print(f"{time.ctime()} \t [move_mouse] \t Moved mouse to {mouse.position}")
 
 
 @click.group()
