@@ -20,7 +20,19 @@ special_keys = {
     "Windows": "alt",
 }
 
+def randomSleep(seconds:int):
 
+    '''
+    Sleep a random number of seconds.
+    
+    Parameters
+    ----------
+    seconds: int
+        Max number of seconds to sleep.
+    '''
+
+    sleep(randint(0,seconds))
+    
 def key_press(seconds):
     """Presses Shift key every x seconds
 
@@ -30,7 +42,7 @@ def key_press(seconds):
     this = current_thread()
     this.alive = True
     while this.alive:
-        sleep(seconds)
+        randomSleep(seconds)
         if not this.alive:
             break
 
@@ -50,7 +62,7 @@ def switch_screen(seconds, tabs, key):
     this = current_thread()
     this.alive = True
     while this.alive:
-        sleep(seconds)
+        randomSleep(seconds)
         if not this.alive:
             break
 
@@ -77,12 +89,16 @@ def move_mouse(seconds, pixels):
     """
     this = current_thread()
     this.alive = True
+    coords = [[pixels, 0], [0, pixels], [-pixels, 0], [0, -pixels]]
+    c = 0
     while this.alive:
-        sleep(seconds)
+        randomSleep(seconds)
         if not this.alive:
             break
 
-        mouse.move(pixels, pixels)
+        mouse.move(coords[c][0], coords[c][1])
+        c = 0 if c+1 == len(coords) else c + 1
+        
         print("{}\t[move_mouse]\tMoved mouse to".format(time.ctime(), mouse.position))
 
 
@@ -152,3 +168,11 @@ def start(seconds, pixels, mode, tabs, key):
 
         print("So you don't need me anymore?")
         os._exit(1)
+
+        
+        
+        
+        
+if __name__ == '__main__':
+
+    start()
